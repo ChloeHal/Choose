@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 const questions = {
   fiction: [
     'Want to change universes?',
@@ -175,53 +173,3 @@ const questions = {
     'Are you willing to explore fictional universes populated by colorful characters and fantastic creatures?',
   ],
 };
-
-function QuestBook() {
-  const [answers, setAnswers] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-
-  function getRandomQuestion() {
-    const styles = Object.keys(questions);
-    const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-    const randomQuestion =
-      questions[randomStyle][
-        Math.floor(Math.random() * questions[randomStyle].length)
-      ];
-    setCurrentQuestion(randomQuestion);
-  }
-
-  function handleAnswer(answer) {
-    setAnswers([...answers, answer]);
-    getRandomQuestion();
-  }
-
-  // Au chargement de la page, on génère la première question aléatoire
-  React.useEffect(() => {
-    getRandomQuestion();
-  }, []);
-
-  return (
-    <div>
-      {currentQuestion && (
-        <div>
-          <p>{currentQuestion}</p>
-          <button onClick={() => handleAnswer('yes')}>Yes</button>
-          <button onClick={() => handleAnswer('no')}>No</button>
-        </div>
-      )}
-      {answers.length === 5 && (
-        <div>
-          <p>Thank you for answering the questions!</p>
-          <p>Here are your answers:</p>
-          <ul>
-            {answers.map((answer, index) => (
-              <li key={index}>{answer}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default QuestBook;
