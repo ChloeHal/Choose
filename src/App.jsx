@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Question from './Components/Question';
+import Result from './Components/Result';
 
 const questions = {
   fiction: [
@@ -207,24 +209,16 @@ function QuestBook() {
   return (
     <div>
       {currentQuestion && (
-        <div>
-          <p>{currentQuestion}</p>
-          <button onClick={() => handleAnswer('yes')}>Yes</button>
-          <button onClick={() => handleAnswer('no')}>No</button>
-        </div>
+        <Question
+          currentQuestion={currentQuestion}
+          handleAnswer={handleAnswer}
+        />
       )}
       {!currentQuestion && (
-        <div>
-          <p>Thank you for answering the questions!</p>
-          <p>Here are The book you have to read:</p>
-          <img src=./public/book/test.png" alt=""/>
-          
-          <button onClick={() => restartQuiz()}>Restart Quiz</button>
-        </div>
+        <Result answers={answers} restartQuiz={restartQuiz} />
       )}
     </div>
   );
 }
 
 export default QuestBook;
-
