@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-function Question({ currentQuestion, handleAnswer }) {
+function Question({ question, onAnswer }) {
   return (
     <div>
-      <p>{currentQuestion}</p>
-      <button onClick={() => handleAnswer("yes")}>Yes</button>
-      <button onClick={() => handleAnswer("no")}>No</button>
+      <p>{question}</p>
+      <button onClick={() => onAnswer('yes')}>Yes</button>
+      <button onClick={() => onAnswer('no')}>No</button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Question from './Components/Question';
 import Result from './Components/Result';
 
@@ -195,6 +195,7 @@ function QuestBook() {
   function handleAnswer(answer) {
     setAnswers([...answers, answer]);
     if (answers.length === 4) {
+      setAnswers([...answers, answer]);
       setCurrentQuestion(null);
     } else {
       getRandomQuestion();
@@ -206,16 +207,16 @@ function QuestBook() {
     getRandomQuestion();
   }
 
+  useEffect(() => {
+    getRandomQuestion();
+  }, []);
+
   return (
     <div>
-      {currentQuestion && (
-        <Question
-          currentQuestion={currentQuestion}
-          handleAnswer={handleAnswer}
-        />
-      )}
-      {!currentQuestion && (
-        <Result answers={answers} restartQuiz={restartQuiz} />
+      {currentQuestion ? (
+        <Question question={currentQuestion} onAnswer={handleAnswer} />
+      ) : (
+        <Result answers={answers} onRestart={restartQuiz} />
       )}
     </div>
   );
