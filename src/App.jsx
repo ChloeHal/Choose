@@ -192,13 +192,17 @@ function QuestBook() {
 
   function handleAnswer(answer) {
     setAnswers([...answers, answer]);
-    getRandomQuestion();
+    if (answers.length === 4) {
+      setCurrentQuestion(null);
+    } else {
+      getRandomQuestion();
+    }
   }
 
-  // Au chargement de la page, on génère la première question aléatoire
-  React.useEffect(() => {
+  function restartQuiz() {
+    setAnswers([]);
     getRandomQuestion();
-  }, []);
+  }
 
   return (
     <div>
@@ -209,15 +213,13 @@ function QuestBook() {
           <button onClick={() => handleAnswer('no')}>No</button>
         </div>
       )}
-      {answers.length === 5 && (
+      {!currentQuestion && (
         <div>
           <p>Thank you for answering the questions!</p>
-          <p>Here are your answers:</p>
-          <ul>
-            {answers.map((answer, index) => (
-              <li key={index}>{answer}</li>
-            ))}
-          </ul>
+          <p>Here are The book you have to read:</p>
+          <img src=./public/book/test.png" alt=""/>
+          
+          <button onClick={() => restartQuiz()}>Restart Quiz</button>
         </div>
       )}
     </div>
@@ -225,3 +227,4 @@ function QuestBook() {
 }
 
 export default QuestBook;
+
