@@ -1,11 +1,14 @@
 import React from 'react';
+import './question.css';
 
 function Question({ question, onAnswer }) {
   return (
-    <div>
+    <div className="question-card">
       <p>{question}</p>
-      <button onClick={() => onAnswer('yes')}>Yes</button>
-      <button onClick={() => onAnswer('no')}>No</button>
+      <div className="wrap">
+        <button onClick={() => onAnswer('yes')}>Yes</button>
+        <button onClick={() => onAnswer('no')}>No</button>
+      </div>
     </div>
   );
 }
