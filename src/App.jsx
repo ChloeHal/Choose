@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Components/Question';
 import Result from './Components/Result';
+import axios from 'axios';
 
 const questions = {
   fiction: [
